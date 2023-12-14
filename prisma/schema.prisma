@@ -15,6 +15,7 @@ model StudentUser {
   firstName String
   lastName  String
   email     String  @unique
+  password  String
   gender    String?
   birthday  String?
   weight    String?
