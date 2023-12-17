@@ -22,12 +22,12 @@ describe('Authenticate Use Case', () => {
       password: await hash('123456', 6),
     })
 
-    const { studentUser } = await sut.execute({
+    const { user } = await sut.execute({
       email: 'john@email.com',
       password: '123456',
     })
 
-    expect(studentUser.id).toEqual(expect.any(String))
+    expect(user.id).toEqual(expect.any(String))
   })
 
   it('should not be able to authenticate with wrong email', async () => {

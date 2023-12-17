@@ -32,4 +32,10 @@ export class InMemoryStudentsRepository implements StudentUsersRepository {
 
     return user
   }
+
+  async listAllStudents() {
+    const user = this.items.slice()
+
+    return user
+  }
 }

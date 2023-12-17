@@ -1,9 +1,9 @@
 import { PrismaStudentUsersRepository } from '@/repository/prisma/prisma-studentUsers-repository'
-import { RegisterStudentsUseCase } from '../students/register-students'
+import { GetAllStudentsUseCase } from '../students/get-all-students'
 
-export function makeRegisterStudentsUseCase() {
+export function makeGetAllStudentsUseCase() {
   const studentUsersRepository = new PrismaStudentUsersRepository()
-  const registerStudentsUseCase = new RegisterStudentsUseCase(
+  const registerStudentsUseCase = new GetAllStudentsUseCase(
     studentUsersRepository,
   )
 

@@ -19,8 +19,8 @@ export async function register(request: FastifyRequest, reply: FastifyReply) {
     const registerStudentsUseCase = makeRegisterStudentsUseCase()
 
     await registerStudentsUseCase.execute({
-      firstName,
-      lastName,
+      firstName: firstName.toLocaleLowerCase(),
+      lastName: lastName.toLocaleLowerCase(),
       email,
       password,
     })
