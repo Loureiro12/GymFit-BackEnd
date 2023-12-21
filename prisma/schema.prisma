@@ -10,6 +10,12 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum Role {
+  ADMIN
+  STUDENT
+  PROFESSOR
+}
+
 model StudentUser {
   id        String  @id @default(uuid())
   firstName String
@@ -21,6 +27,8 @@ model StudentUser {
   weight    String?
   height    String?
   goal      String?
+
+  role Role @default(STUDENT)
 
   @@map("studentUsers")
 }
