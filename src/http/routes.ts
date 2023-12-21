@@ -1,8 +1,8 @@
 import { FastifyInstance } from 'fastify'
 
 import { authenticate } from './controllers/authenticate'
-import { register } from './controllers/student-user/register-students'
-import { search } from './controllers/student-user/search'
+import { register } from './controllers/user/register-user'
+import { search } from './controllers/user/search'
 import { verifyJwt } from './middlewares/verify-jwt'
 import { refresh } from './controllers/refresh'
 import { verifyUserRole } from './middlewares/verify-user-role'
@@ -12,10 +12,6 @@ export async function appRoutes(app: FastifyInstance) {
 
   app.patch('/token/refresh', refresh)
 
-  app.post('/student/create', register)
-  app.get(
-    '/student',
-    { onRequest: [verifyJwt, verifyUserRole('ADMIN')] },
-    search,
-  )
+  app.post('/user', register)
+  app.get('/user', { onRequest: [verifyJwt, verifyUserRole('ADMIN')] }, search)
 }

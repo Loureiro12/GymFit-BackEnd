@@ -1,18 +1,18 @@
-import { InMemoryStudentsRepository } from '@/repository/in-memory/in-memory-students-repository'
+import { InMemoryUserRepository } from '@/repository/in-memory/in-memory-user-repository'
 import { expect, describe, it, beforeEach } from 'vitest'
-import { GetAllStudentsUseCase } from './get-all-students'
+import { GetAllUserUseCase } from './get-all-user'
 
-let inMemoryStudentsRepository: InMemoryStudentsRepository
-let sut: GetAllStudentsUseCase
+let inMemoryUserRepository: InMemoryUserRepository
+let sut: GetAllUserUseCase
 
 describe('Fetch Students Use Case', () => {
   beforeEach(async () => {
-    inMemoryStudentsRepository = new InMemoryStudentsRepository()
-    sut = new GetAllStudentsUseCase(inMemoryStudentsRepository)
+    inMemoryUserRepository = new InMemoryUserRepository()
+    sut = new GetAllUserUseCase(inMemoryUserRepository)
   })
 
   it('should be able to fetch students', async () => {
-    await inMemoryStudentsRepository.create({
+    await inMemoryUserRepository.create({
       firstName: 'John',
       lastName: 'Doe',
       email: 'john@email.com',

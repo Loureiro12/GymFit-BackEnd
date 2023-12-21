@@ -3,16 +3,16 @@ import { expect, describe, it, beforeEach } from 'vitest'
 import { compare } from 'bcryptjs'
 import { UserAlreadyExistsError } from '../errors/user-already-exists-error'
 
-import { RegisterStudentsUseCase } from './register-students'
-import { InMemoryStudentsRepository } from '@/repository/in-memory/in-memory-students-repository'
+import { RegisterUserUseCase } from './register-user'
+import { InMemoryUserRepository } from '@/repository/in-memory/in-memory-user-repository'
 
-let inMemoryStudentsRepository: InMemoryStudentsRepository
-let sut: RegisterStudentsUseCase
+let inMemoryUserRepository: InMemoryUserRepository
+let sut: RegisterUserUseCase
 
 describe('Register Use Case', () => {
   beforeEach(() => {
-    inMemoryStudentsRepository = new InMemoryStudentsRepository()
-    sut = new RegisterStudentsUseCase(inMemoryStudentsRepository)
+    inMemoryUserRepository = new InMemoryUserRepository()
+    sut = new RegisterUserUseCase(inMemoryUserRepository)
   })
   it('should be able to register', async () => {
     const { user } = await sut.execute({

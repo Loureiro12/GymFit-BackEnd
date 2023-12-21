@@ -1,7 +1,7 @@
 import { Prisma, StudentUser } from '@prisma/client'
 
-export interface StudentUsersRepository {
+export interface UsersRepository {
   create(data: Prisma.StudentUserCreateInput): Promise<StudentUser>
   findByEmail(email: string): Promise<StudentUser | null>
-  listAllStudents(page: number, query?: string): Promise<StudentUser[]>
+  listAllUser(page: number, query?: string): Promise<StudentUser[]>
 }

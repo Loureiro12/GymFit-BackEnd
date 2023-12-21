@@ -1,6 +1,6 @@
 import { FastifyRequest, FastifyReply } from 'fastify'
 import { z } from 'zod'
-import { makeGetAllStudentsUseCase } from '@/use-cases/factories/make-get-all-students-use-case'
+import { makeGetAllUserUseCase } from '@/use-cases/factories/make-get-all-user-use-case'
 
 export async function search(request: FastifyRequest, reply: FastifyReply) {
   const searchStudentUsersSchema = z.object({
@@ -10,7 +10,7 @@ export async function search(request: FastifyRequest, reply: FastifyReply) {
 
   const { query, page } = searchStudentUsersSchema.parse(request.query)
 
-  const registerStudentsUseCase = makeGetAllStudentsUseCase()
+  const registerStudentsUseCase = makeGetAllUserUseCase()
 
   const { users } = await registerStudentsUseCase.execute({
     query: query?.toLocaleLowerCase(),

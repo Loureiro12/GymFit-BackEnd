@@ -1,7 +1,7 @@
 import { Prisma, StudentUser } from '@prisma/client'
-import { StudentUsersRepository } from '../studentUsers-repository'
+import { UsersRepository } from '../users-repository'
 
-export class InMemoryStudentsRepository implements StudentUsersRepository {
+export class InMemoryUserRepository implements UsersRepository {
   public items: StudentUser[] = []
 
   async create(data: Prisma.StudentUserCreateInput) {
@@ -11,11 +11,12 @@ export class InMemoryStudentsRepository implements StudentUsersRepository {
       lastName: data.lastName,
       email: data.email,
       password: data.password,
-      birthday: null,
       gender: null,
-      goal: null,
-      height: null,
+      birthday: null,
       weight: null,
+      height: null,
+      goal: null,
+      role: data?.role,
     }
 
     this.items.push(user)
@@ -33,7 +34,7 @@ export class InMemoryStudentsRepository implements StudentUsersRepository {
     return user
   }
 
-  async listAllStudents() {
+  async listAllUser() {
     const user = this.items.slice()
 
     return user

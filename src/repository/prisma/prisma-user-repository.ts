@@ -1,8 +1,8 @@
 import { prisma } from '@/lib/prisma'
 import { Prisma } from '@prisma/client'
-import { StudentUsersRepository } from '../studentUsers-repository'
+import { UsersRepository } from '../users-repository'
 
-export class PrismaStudentUsersRepository implements StudentUsersRepository {
+export class PrismaUsersRepository implements UsersRepository {
   async create(data: Prisma.StudentUserCreateInput) {
     const studentUser = await prisma.studentUser.create({
       data,
@@ -21,7 +21,7 @@ export class PrismaStudentUsersRepository implements StudentUsersRepository {
     return user
   }
 
-  async listAllStudents(page: number, query?: string) {
+  async listAllUser(page: number, query?: string) {
     if (query) {
       const users = await prisma.studentUser.findMany({
         where: {
