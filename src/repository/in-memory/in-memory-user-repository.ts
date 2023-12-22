@@ -71,4 +71,14 @@ export class InMemoryUserRepository implements UsersRepository {
 
     return user
   }
+
+  async deleteUser(id: string) {
+    const user = this.items.find((item) => item.id === id)
+
+    if (!user) {
+      return false
+    }
+
+    return true
+  }
 }

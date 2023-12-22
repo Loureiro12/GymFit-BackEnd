@@ -17,7 +17,14 @@ export async function search(request: FastifyRequest, reply: FastifyReply) {
     page,
   })
 
+  const dataUsers = users.map((user) => {
+    return {
+      ...user,
+      password: undefined,
+    }
+  })
+
   return reply.status(200).send({
-    users,
+    users: dataUsers,
   })
 }

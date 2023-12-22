@@ -9,4 +9,5 @@ export interface UsersRepository {
     data: Prisma.StudentUserCreateInput,
     id: string,
   ): Promise<StudentUser>
+  deleteUser(id: string): Promise<boolean>
 }

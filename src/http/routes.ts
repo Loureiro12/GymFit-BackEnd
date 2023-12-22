@@ -7,6 +7,7 @@ import { verifyJwt } from './middlewares/verify-jwt'
 import { refresh } from './controllers/refresh'
 import { verifyUserRole } from './middlewares/verify-user-role'
 import { disableUser } from './controllers/user/disable-user'
+import { deleteUser } from './controllers/user/delete-user'
 
 export async function appRoutes(app: FastifyInstance) {
   app.post('/sessions', authenticate)
@@ -19,5 +20,10 @@ export async function appRoutes(app: FastifyInstance) {
     '/user/disable',
     { onRequest: [verifyJwt, verifyUserRole('ADMIN')] },
     disableUser,
+  )
+  app.delete(
+    '/user',
+    { onRequest: [verifyJwt, verifyUserRole('ADMIN')] },
+    deleteUser,
   )
 }
