@@ -21,6 +21,16 @@ export class PrismaUsersRepository implements UsersRepository {
     return user
   }
 
+  async findUserById(id: string) {
+    const user = await prisma.studentUser.findUnique({
+      where: {
+        id,
+      },
+    })
+
+    return user
+  }
+
   async listAllUser(page: number, query?: string) {
     if (query) {
       const users = await prisma.studentUser.findMany({
@@ -42,5 +52,14 @@ export class PrismaUsersRepository implements UsersRepository {
     })
 
     return users
+  }
+
+  async updateUser(data: Prisma.StudentUserCreateInput, id: string) {
+    const user = await prisma.studentUser.update({
+      where: { id },
+      data,
+    })
+
+    return user
   }
 }

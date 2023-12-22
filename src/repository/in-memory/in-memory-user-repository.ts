@@ -17,6 +17,7 @@ export class InMemoryUserRepository implements UsersRepository {
       height: null,
       goal: null,
       role: data?.role,
+      status: data?.status,
     }
 
     this.items.push(user)
@@ -36,6 +37,37 @@ export class InMemoryUserRepository implements UsersRepository {
 
   async listAllUser() {
     const user = this.items.slice()
+
+    return user
+  }
+
+  async findUserById(id: string) {
+    const user = this.items.find((item) => item.id === id)
+
+    if (!user) {
+      return null
+    }
+
+    return user
+  }
+
+  async updateUser(data: Prisma.StudentUserCreateInput, id: string) {
+    const user = {
+      id,
+      firstName: data.firstName,
+      lastName: data.lastName,
+      email: data.email,
+      password: data.password,
+      gender: null,
+      birthday: null,
+      weight: null,
+      height: null,
+      goal: null,
+      role: data?.role,
+      status: data.status,
+    }
+
+    this.items.push(user)
 
     return user
   }

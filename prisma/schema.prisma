@@ -16,17 +16,23 @@ enum Role {
   PROFESSOR
 }
 
+enum StatusUserStatus {
+  ENABLE
+  DISABLED
+}
+
 model StudentUser {
-  id        String  @id @default(uuid())
+  id        String           @id @default(uuid())
   firstName String
   lastName  String
-  email     String  @unique
+  email     String           @unique
   password  String
   gender    String?
   birthday  String?
   weight    String?
   height    String?
   goal      String?
+  status    StatusUserStatus @default(ENABLE)
 
   role Role @default(STUDENT)
 
