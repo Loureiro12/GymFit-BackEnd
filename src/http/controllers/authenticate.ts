@@ -22,6 +22,13 @@ export async function authenticate(
       password,
     })
 
+    if (user.status === 'DISABLED') {
+      return reply.status(403).send({
+        message:
+          'Essa conta encontra-se temporariamente bloqueada. Por favor, entre em contato com nossa central de atendimento',
+      })
+    }
+
     const token = await reply.jwtSign(
       {
         role: user.role,
