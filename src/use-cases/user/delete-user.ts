@@ -17,7 +17,10 @@ export class DeleteUserUseCase {
   }: DeleteUserUseCaseRequest): Promise<DeleteUserUseCaseResponse> {
     const dataUser = await this.usersRepository.findUserById(userId)
 
+    console.log('##########', dataUser)
+
     if (!dataUser) {
+      console.log('entrou')
       throw new UserNotFound()
     }
 

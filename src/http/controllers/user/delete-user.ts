@@ -1,7 +1,7 @@
 import { FastifyRequest, FastifyReply } from 'fastify'
 import { z } from 'zod'
-import { UserAlreadyExistsError } from '@/use-cases/errors/user-already-exists-error'
 import { makeDeleteUserUseCase } from '@/use-cases/factories/make-delete-user-use-case'
+import { UserNotFound } from '@/use-cases/errors/user-not-found'
 
 export async function deleteUser(request: FastifyRequest, reply: FastifyReply) {
   const registerBodySchema = z.object({
@@ -17,7 +17,7 @@ export async function deleteUser(request: FastifyRequest, reply: FastifyReply) {
       userId,
     })
   } catch (err) {
-    if (err instanceof UserAlreadyExistsError) {
+    if (err instanceof UserNotFound) {
       return reply.status(404).send({ message: err.message })
     }
 
