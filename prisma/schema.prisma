@@ -38,3 +38,16 @@ model StudentUser {
 
   @@map("studentUsers")
 }
+
+model Food {
+  id            String @id @default(uuid())
+  name          String
+  portion       String
+  calories      String
+  carbohydrates String
+  protein       String
+  fat           String
+  fiber         String
+
+  @@map("foods")
+}
