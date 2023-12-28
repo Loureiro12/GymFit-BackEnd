@@ -10,4 +10,41 @@ export class PrismaFoodsRepository implements FoodsRepository {
 
     return food
   }
+
+  async listFoods(
+    page: number,
+    query?: string | undefined,
+  ): Promise<
+    {
+      id: string
+      name: string
+      portion: string
+      calories: string
+      carbohydrates: string
+      protein: string
+      fat: string
+      fiber: string
+    }[]
+  > {
+    if (query) {
+      const users = await prisma.food.findMany({
+        where: {
+          name: {
+            contains: query,
+          },
+        },
+        take: 20,
+        skip: (page - 1) * 20,
+      })
+
+      return users
+    }
+
+    const foods = await prisma.food.findMany({
+      take: 20,
+      skip: (page - 1) * 20,
+    })
+
+    return foods
+  }
 }

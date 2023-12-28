@@ -20,4 +20,10 @@ export class InMemoryFoodRepository implements FoodsRepository {
 
     return food
   }
+
+  async listFoods() {
+    const foods = this.items.slice()
+
+    return foods
+  }
 }
