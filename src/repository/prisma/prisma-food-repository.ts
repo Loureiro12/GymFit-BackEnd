@@ -47,4 +47,22 @@ export class PrismaFoodsRepository implements FoodsRepository {
 
     return foods
   }
+
+  async findFoodById(id: string) {
+    const food = await prisma.food.findUnique({
+      where: {
+        id,
+      },
+    })
+
+    return food
+  }
+
+  async deleteFood(id: string) {
+    await prisma.food.delete({
+      where: { id },
+    })
+
+    return true
+  }
 }

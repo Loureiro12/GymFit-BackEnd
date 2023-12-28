@@ -26,4 +26,24 @@ export class InMemoryFoodRepository implements FoodsRepository {
 
     return foods
   }
+
+  async findFoodById(id: string) {
+    const food = this.items.find((item) => item.id === id)
+
+    if (!food) {
+      return null
+    }
+
+    return food
+  }
+
+  async deleteFood(id: string) {
+    const food = this.items.find((item) => item.id === id)
+
+    if (!food) {
+      return false
+    }
+
+    return true
+  }
 }

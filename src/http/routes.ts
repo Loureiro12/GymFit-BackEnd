@@ -10,6 +10,7 @@ import { disableUser } from './controllers/user/disable-user'
 import { deleteUser } from './controllers/user/delete-user'
 import { registerFood } from './controllers/food/register-food'
 import { searchFoods } from './controllers/food/search-food'
+import { deleteFood } from './controllers/food/delete-food'
 
 export async function appRoutes(app: FastifyInstance) {
   app.post('/sessions', authenticate)
@@ -36,10 +37,14 @@ export async function appRoutes(app: FastifyInstance) {
     { onRequest: [verifyJwt, verifyUserRole('ADMIN')] },
     registerFood,
   )
-
   app.get(
     '/food',
     { onRequest: [verifyJwt, verifyUserRole('ADMIN')] },
     searchFoods,
+  )
+  app.delete(
+    '/food',
+    { onRequest: [verifyJwt, verifyUserRole('ADMIN')] },
+    deleteFood,
   )
 }
