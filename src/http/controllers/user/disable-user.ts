@@ -1,7 +1,7 @@
 import { FastifyRequest, FastifyReply } from 'fastify'
 import { z } from 'zod'
 import { UserAlreadyExistsError } from '@/use-cases/errors/user-already-exists-error'
-import { makeDisableUserUseCase } from '@/use-cases/factories/make-disable-user-use-case'
+import { makeDisableUserUseCase } from '@/use-cases/factories/user/make-disable-user-use-case'
 
 export async function disableUser(
   request: FastifyRequest,

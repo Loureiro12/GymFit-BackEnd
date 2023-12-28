@@ -1,6 +1,6 @@
 import { FastifyRequest, FastifyReply } from 'fastify'
 import { z } from 'zod'
-import { makeGetAllUserUseCase } from '@/use-cases/factories/make-get-all-user-use-case'
+import { makeGetAllUserUseCase } from '@/use-cases/factories/user/make-get-all-user-use-case'
 
 export async function search(request: FastifyRequest, reply: FastifyReply) {
   const searchStudentUsersSchema = z.object({

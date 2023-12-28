@@ -1,5 +1,5 @@
 import { PrismaUsersRepository } from '@/repository/prisma/prisma-user-repository'
-import { DisableUserUseCase } from '../user/disable-user'
+import { DisableUserUseCase } from '../../user/disable-user'
 
 export function makeDisableUserUseCase() {
   const usersRepository = new PrismaUsersRepository()
