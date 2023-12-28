@@ -46,4 +46,33 @@ export class InMemoryFoodRepository implements FoodsRepository {
 
     return true
   }
+
+  async updateFood(
+    data: Prisma.FoodCreateInput,
+    foodId: string,
+  ): Promise<{
+    id: string
+    name: string
+    portion: string
+    calories: string
+    carbohydrates: string
+    protein: string
+    fat: string
+    fiber: string
+  }> {
+    const food = {
+      id: foodId,
+      name: data.name,
+      portion: data.portion,
+      calories: data.calories,
+      carbohydrates: data.carbohydrates,
+      protein: data.protein,
+      fat: data.fat,
+      fiber: data.fiber,
+    }
+
+    this.items.push(food)
+
+    return food
+  }
 }

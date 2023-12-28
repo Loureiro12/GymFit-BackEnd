@@ -11,6 +11,7 @@ import { deleteUser } from './controllers/user/delete-user'
 import { registerFood } from './controllers/food/register-food'
 import { searchFoods } from './controllers/food/search-food'
 import { deleteFood } from './controllers/food/delete-food'
+import { updateFood } from './controllers/food/update-food'
 
 export async function appRoutes(app: FastifyInstance) {
   app.post('/sessions', authenticate)
@@ -46,5 +47,10 @@ export async function appRoutes(app: FastifyInstance) {
     '/food',
     { onRequest: [verifyJwt, verifyUserRole('ADMIN')] },
     deleteFood,
+  )
+  app.patch(
+    '/food',
+    { onRequest: [verifyJwt, verifyUserRole('ADMIN')] },
+    updateFood,
   )
 }

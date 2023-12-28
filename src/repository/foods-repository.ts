@@ -5,4 +5,5 @@ export interface FoodsRepository {
   listFoods(page: number, query?: string): Promise<Food[]>
   findFoodById(id: string): Promise<Food | null>
   deleteFood(id: string): Promise<boolean>
+  updateFood(data: Prisma.FoodCreateInput, foodId: string): Promise<Food>
 }

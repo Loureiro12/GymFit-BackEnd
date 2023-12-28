@@ -65,4 +65,13 @@ export class PrismaFoodsRepository implements FoodsRepository {
 
     return true
   }
+
+  async updateFood(data: Prisma.FoodCreateInput, foodId: string) {
+    const food = await prisma.food.update({
+      where: { id: foodId },
+      data,
+    })
+
+    return food
+  }
 }
