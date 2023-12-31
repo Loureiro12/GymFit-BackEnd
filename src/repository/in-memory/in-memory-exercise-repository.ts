@@ -17,4 +17,10 @@ export class InMemoryExerciseRepository implements ExerciseRepository {
 
     return food
   }
+
+  async listExercises() {
+    const exercise = this.items.slice()
+
+    return exercise
+  }
 }
