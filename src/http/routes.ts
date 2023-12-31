@@ -12,6 +12,7 @@ import { registerFood } from './controllers/food/register-food'
 import { searchFoods } from './controllers/food/search-food'
 import { deleteFood } from './controllers/food/delete-food'
 import { updateFood } from './controllers/food/update-food'
+import { createExercise } from './controllers/exercise/create-exercise'
 
 export async function appRoutes(app: FastifyInstance) {
   app.post('/sessions', authenticate)
@@ -52,5 +53,13 @@ export async function appRoutes(app: FastifyInstance) {
     '/food',
     { onRequest: [verifyJwt, verifyUserRole('ADMIN')] },
     updateFood,
+  )
+
+  // exercise
+
+  app.post(
+    '/exercise',
+    { onRequest: [verifyJwt, verifyUserRole('ADMIN')] },
+    createExercise,
   )
 }

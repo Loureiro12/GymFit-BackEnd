@@ -51,3 +51,24 @@ model Food {
 
   @@map("foods")
 }
+
+enum MuscleGroup {
+  thorax
+  shoulder
+  triceps
+  back
+  abdomen
+  biceps
+  leg
+  glute
+}
+
+model Exercise {
+  id          String      @id @default(uuid())
+  name        String
+  imageUrl    String
+  videoUrl    String
+  muscleGroup MuscleGroup
+
+  @@map("exercises")
+}
