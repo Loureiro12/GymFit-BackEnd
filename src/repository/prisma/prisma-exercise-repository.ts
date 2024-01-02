@@ -33,4 +33,31 @@ export class PrismaExerciseRepository implements ExerciseRepository {
 
     return exercise
   }
+
+  async findExerciseById(exerciseId: string) {
+    const exercise = await prisma.exercise.findUnique({
+      where: {
+        id: exerciseId,
+      },
+    })
+
+    return exercise
+  }
+
+  async deleteExercise(exerciseId: string) {
+    await prisma.exercise.delete({
+      where: { id: exerciseId },
+    })
+
+    return true
+  }
+
+  async updateExercise(data: Prisma.ExerciseCreateInput, exerciseId: string) {
+    const exercise = await prisma.exercise.update({
+      where: { id: exerciseId },
+      data,
+    })
+
+    return exercise
+  }
 }

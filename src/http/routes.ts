@@ -14,6 +14,7 @@ import { deleteFood } from './controllers/food/delete-food'
 import { updateFood } from './controllers/food/update-food'
 import { createExercise } from './controllers/exercise/create-exercise'
 import { searchExercise } from './controllers/exercise/search-exercise'
+import { deleteExercise } from './controllers/exercise/delete-exercise'
 
 export async function appRoutes(app: FastifyInstance) {
   app.post('/sessions', authenticate)
@@ -64,4 +65,5 @@ export async function appRoutes(app: FastifyInstance) {
     createExercise,
   )
   app.get('/exercise', { onRequest: [verifyJwt] }, searchExercise)
+  app.delete('/exercise', { onRequest: [verifyJwt] }, deleteExercise)
 }
