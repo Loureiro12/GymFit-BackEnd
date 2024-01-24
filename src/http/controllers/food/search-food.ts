@@ -9,15 +9,17 @@ export async function searchFoods(
   const searchFoodsSchema = z.object({
     query: z.string().optional(),
     page: z.coerce.number().min(1).default(1),
+    id: z.string().optional(),
   })
 
-  const { query, page } = searchFoodsSchema.parse(request.query)
+  const { query, page, id } = searchFoodsSchema.parse(request.query)
 
   const foodsUseCase = makeGetFoodsUseCase()
 
   const { foods } = await foodsUseCase.execute({
     query: query?.toLocaleLowerCase(),
     page,
+    id,
   })
 
   return reply.status(200).send({

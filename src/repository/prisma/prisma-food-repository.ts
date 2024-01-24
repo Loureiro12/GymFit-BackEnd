@@ -14,6 +14,7 @@ export class PrismaFoodsRepository implements FoodsRepository {
   async listFoods(
     page: number,
     query?: string | undefined,
+    id?: string,
   ): Promise<
     {
       id: string
@@ -26,6 +27,17 @@ export class PrismaFoodsRepository implements FoodsRepository {
       fiber: string
     }[]
   > {
+    if (id) {
+      const users = await prisma.food.findMany({
+        where: {
+          id: {
+            equals: id,
+          },
+        },
+      })
+
+      return users
+    }
     if (query) {
       const users = await prisma.food.findMany({
         where: {

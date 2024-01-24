@@ -11,7 +11,24 @@ export class PrismaExerciseRepository implements ExerciseRepository {
     return exercise
   }
 
-  async listExercises(page: number, query?: string | undefined) {
+  async listExercises(
+    page: number,
+    query?: string | undefined,
+    id?: string | undefined,
+  ) {
+    if (id) {
+      const users = await prisma.exercise.findMany({
+        where: {
+          id: {
+            equals: id,
+          },
+        },
+        take: 20,
+        skip: (page - 1) * 20,
+      })
+
+      return users
+    }
     if (query) {
       const users = await prisma.exercise.findMany({
         where: {

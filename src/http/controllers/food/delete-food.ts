@@ -8,7 +8,9 @@ export async function deleteFood(request: FastifyRequest, reply: FastifyReply) {
     foodId: z.string(),
   })
 
-  const { foodId } = deleteFoodBodySchema.parse(request.body)
+  const { foodId } = deleteFoodBodySchema.parse(request.query)
+
+  console.log('foodId', foodId)
 
   try {
     const deleteUserUseCase = makeDeleteFoodUseCase()

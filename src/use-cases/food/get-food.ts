@@ -4,6 +4,7 @@ import { Food } from '@prisma/client'
 interface GetAllFoodUseCaseRequest {
   page: number
   query?: string
+  id?: string
 }
 
 interface GetAllFoodUseCaseResponse {
@@ -16,8 +17,9 @@ export class GetAllFoodsUseCase {
   async execute({
     page,
     query,
+    id,
   }: GetAllFoodUseCaseRequest): Promise<GetAllFoodUseCaseResponse> {
-    const foods = await this.foodsRepository.listFoods(page, query)
+    const foods = await this.foodsRepository.listFoods(page, query, id)
 
     return {
       foods,
