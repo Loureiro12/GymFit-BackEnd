@@ -68,6 +68,7 @@ model Exercise {
   name        String
   imageUrl    String
   videoUrl    String
+  key         String
   muscleGroup MuscleGroup
 
   @@map("exercises")

@@ -6,6 +6,7 @@ interface CreateExerciseUseCaseRequest {
   imageUrl: string
   videoUrl: string
   muscleGroup: MuscleGroup
+  key: string
 }
 
 interface CreateExerciseUseCaseResponse {
@@ -20,12 +21,14 @@ export class CreateExerciseUseCase {
     imageUrl,
     videoUrl,
     muscleGroup,
+    key,
   }: CreateExerciseUseCaseRequest): Promise<CreateExerciseUseCaseResponse> {
     const exercise = await this.exerciseRepository.create({
       name,
       imageUrl,
       videoUrl,
       muscleGroup,
+      key,
     })
 
     return {
